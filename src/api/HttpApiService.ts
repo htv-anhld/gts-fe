@@ -75,7 +75,7 @@ class HttpApiService {
    * get
    * Method get API
    */
-  protected get<T>(endpoint: string, conf = {}): AxiosPromise {
+  protected get<T>(endpoint: string, conf = {}): AxiosPromise<T> {
     return new Promise((resolve, reject) => {
       this._axiosInstance!
         .get<T>(`${endpoint}`, conf)
@@ -92,11 +92,11 @@ class HttpApiService {
    * create()
    * Method create API
    */
-  protected create<T>(endpoint: string, data: {}, conf = {}): AxiosPromise {
+  protected create<T>(endpoint: string, data: {}, conf = {}): AxiosPromise<T> {
     return this.post<T>(endpoint, data, conf)
   }
 
-  protected post<T>(endpoint: string, data: {}, conf = {}): AxiosPromise {
+  protected post<T>(endpoint: string, data: {}, conf = {}): AxiosPromise<T> {
     return new Promise((resolve, reject) => {
       this._axiosInstance!
         .post<T>(`${endpoint}`, data, conf)
@@ -113,7 +113,7 @@ class HttpApiService {
    * update()
    * Method update API
    */
-  protected update<T>(endpoint: string, data: {}, conf = {}): AxiosPromise {
+  protected update<T>(endpoint: string, data: {}, conf = {}): AxiosPromise<T> {
     return new Promise((resolve, reject) => {
       this._axiosInstance!
         .put<T>(`${endpoint}`, data, conf)
@@ -130,7 +130,7 @@ class HttpApiService {
    * delete()
    * Method delete API
    */
-  protected delete<T>(endpoint: string, id: any, conf = {}): AxiosPromise {
+  protected delete<T>(endpoint: string, id: any, conf = {}): AxiosPromise<T> {
     return new Promise((resolve, reject) => {
       this._axiosInstance!
         .delete<T>(`${endpoint}/${id}`, conf)
@@ -164,7 +164,7 @@ class HttpApiService {
    * uploadFile()
    * Method uploadFile API
    */
-  protected uploadFile<T>(endpoint: string, data: FormData, conf = {}): AxiosPromise {
+  protected uploadFile<T>(endpoint: string, data: FormData, conf = {}): AxiosPromise<T> {
     return this.post<T>(endpoint, data, conf)
   }
 

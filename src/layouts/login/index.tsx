@@ -44,7 +44,9 @@ function Basic(): JSX.Element {
         console.log({ values, actions });
         const authService = new AuthService();
         const response = await authService.login({username: values.username, password: values.password});
-        console.log({ response });
+        if (response) {
+            window.document.location = "/";
+        }
     };
 
     

@@ -51,6 +51,7 @@ import {
   setMiniSidenav,
   setOpenConfigurator,
 } from "context";
+import { AuthApiService } from "api/AuthService";
 
 // Declaring prop types for DashboardNavbar
 interface Props {
@@ -138,7 +139,13 @@ function DashboardNavbar({ absolute, light, isMini }: Props): JSX.Element {
         <Link to="/account/settings"><NotificationItem icon={<Icon>person</Icon>} title="Profile" /></Link>
         <NotificationItem icon={<Icon>lock</Icon>} title="Change Password" />
         <NotificationItem icon={<Icon>settings</Icon>} title="Config theme" onClick={handleConfiguratorOpen}/>
-        <NotificationItem icon={<Icon>logout</Icon>} title="Logout" />
+        <NotificationItem icon={<Icon>logout</Icon>} onClick={async () => {
+          const response = await AuthApiService.logout();
+          if (response) {
+            localStorage.clear();
+            window.document.location = "/login";
+          }
+        }} title="Logout" />
       </Menu>
     );
 

@@ -11,7 +11,8 @@ export class AuthService extends HttpApiService {
     async login(params: AuthParams): Promise<AuthToken | undefined> {
         try {
             const response = await this.post<BaseResponse<AuthToken>>('login', params)
-            return response.data;
+            localStorage.setItem('token', response.data.data.token);
+            return response.data.data;
         } catch(error) {
             return undefined;
         }
@@ -20,17 +21,15 @@ export class AuthService extends HttpApiService {
     /**
      * logout()
      * Method logout API
-     * @param data
-     * @param conf
      *  */
-    async logout(data: any, conf = {}) {
+    async logout() {
         try {
-            const response = await this.post<BaseResponse<AuthLogout>>('logout', data, conf);
-            return response.data;
+            const response = await this.post<BaseResponse<AuthLogout>>('logout', {}, {});
+            return response.data.data;
         } catch (error) {
-            localStorage.clear();
             return undefined;
         }
     }
-    
 }
+
+export const AuthApiService = new AuthService();
