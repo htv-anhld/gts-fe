@@ -1,0 +1,9 @@
+{
+  "login": {
+      "title": "Sign in",
+      "label_name": "Enter your email and password to Sign In",
+      "email": "Email",
+      "password": "Password",
+      "remember_me": "Remember me"
+  }
+}
