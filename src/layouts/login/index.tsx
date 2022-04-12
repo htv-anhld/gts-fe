@@ -39,6 +39,7 @@ function Basic(): JSX.Element {
     const { formId, formField } = form;
     const { username, password } = formField;
     const [rememberMe, setRememberMe] = useState<boolean>(false);
+    const [alert, setAlert] = useState<string|null>();
     const handleSetRememberMe = () => setRememberMe(!rememberMe);
 
     const handleSubmit = async (values: any, actions: any) => {
@@ -47,6 +48,8 @@ function Basic(): JSX.Element {
         const response = await authService.login({username: values.username, password: values.password});
         if (response) {
             window.document.location = "/";
+        } else {
+            setAlert("Invalid username or password");
         }
     };
 
@@ -78,7 +81,7 @@ function Basic(): JSX.Element {
                         {({ values, errors, touched, isSubmitting }) => {
                             return (
                                 <Form id={formId} autoComplete="off">
-                                    <MDBox mb={1}><MDAlert color="error">This is an alert!</MDAlert></MDBox>
+                                    {alert && <MDBox mb={1}><MDAlert color="error">{alert}</MDAlert></MDBox>}
                                     <MDBox mb={2}>
                                         <FormField
                                             type={username.type}
