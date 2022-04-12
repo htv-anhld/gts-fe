@@ -34,7 +34,7 @@ function FormField({ label, name, ...rest }: Props): JSX.Element {
       <Field {...rest} name={name} as={MDInput} variant="standard" label={label} fullWidth />
       <MDBox mt={0.75}>
         <MDTypography component="div" variant="caption" color="error" fontWeight="regular">
-          {/* <ErrorMessage name={name} /> */}
+          <ErrorMessage name={name} />
         </MDTypography>
       </MDBox>
     </MDBox>

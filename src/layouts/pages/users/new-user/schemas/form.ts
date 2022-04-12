@@ -33,12 +33,12 @@ const form = {
             label: 'Company',
             type: 'text',
         },
-        username: {
-            name: 'username',
-            label: 'Username',
-            type: 'text',
-            errorMsg: 'Username is required.',
-            invalidMsg: 'Your username is invalid',
+        email: {
+            name: 'email',
+            label: 'Email Address',
+            type: 'email',
+            errorMsg: 'Email address is required.',
+            invalidMsg: 'Your email address is invalid',
         },
         password: {
             name: 'password',

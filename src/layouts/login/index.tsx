@@ -33,26 +33,26 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import initialValuesFormLogin from './schemas/initialValues';
 import validationsFormLogin from './schemas/validations';
-import { AuthService } from "../../api/AuthService";
+import { AuthService } from "../../services/auth.service";
+
 
 function Basic(): JSX.Element {
     const { formId, formField } = form;
     const { username, password } = formField;
     const [rememberMe, setRememberMe] = useState<boolean>(false);
     const [alert, setAlert] = useState<string|null>();
+
     const handleSetRememberMe = () => setRememberMe(!rememberMe);
 
     const handleSubmit = async (values: any, actions: any) => {
-        console.log({ values, actions });
         const authService = new AuthService();
         const response = await authService.login({username: values.username, password: values.password});
         if (response) {
-            window.document.location = "/";
-        } else {
+            window.location.href = "/";
+        }else{
             setAlert("Invalid username or password");
         }
     };
-
     
     return (
         <BasicLayout image={bgImage}>
@@ -81,14 +81,16 @@ function Basic(): JSX.Element {
                         {({ values, errors, touched, isSubmitting }) => {
                             return (
                                 <Form id={formId} autoComplete="off">
-                                    {alert && <MDBox mb={1}><MDAlert color="error">{alert}</MDAlert></MDBox>}
+                                    {alert && <MDBox mb={1}>
+                                        <MDAlert color="error">{alert}</MDAlert>
+                                    </MDBox> }
                                     <MDBox mb={2}>
                                         <FormField
                                             type={username.type}
                                             label={username.label}
                                             name={username.name}
                                             value={values.username}
-                                            error={errors.username}
+                                            error={errors.username && touched.username}
                                             inputProps={{ autoComplete: '' }}
                                         />
                                     </MDBox>

@@ -33,7 +33,7 @@ import MDBadge from "components/common/MDBadge";
 // Material Dashboard 2 PRO React TS examples components
 import Breadcrumbs from "components/Breadcrumbs";
 import NotificationItem from "components/Items/NotificationItem";
-
+import { AuthApiService } from "../../../api/AuthService";
 // Custom styles for DashboardNavbar
 import {
   navbar,
@@ -51,7 +51,6 @@ import {
   setMiniSidenav,
   setOpenConfigurator,
 } from "context";
-import { AuthApiService } from "api/AuthService";
 
 // Declaring prop types for DashboardNavbar
 interface Props {
@@ -143,7 +142,7 @@ function DashboardNavbar({ absolute, light, isMini }: Props): JSX.Element {
           const response = await AuthApiService.logout();
           if (response) {
             localStorage.clear();
-            window.document.location = "/login";
+            window.location.href = "/login";
           }
         }} title="Logout" />
       </Menu>

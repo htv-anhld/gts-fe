@@ -36,7 +36,7 @@ function MDEditor(props: Props): JSX.Element {
 
   return (
     <MDEditorRoot ownerState={{ darkMode }}>
-      {/* <ReactQuill theme="snow" {...props} /> */}
+      <ReactQuill theme="snow" {...props} />
     </MDEditorRoot>
   );
 }

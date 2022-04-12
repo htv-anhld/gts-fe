@@ -18,10 +18,10 @@ const form = {
     formField: {
         username: {
             name: 'username',
-            label: 'Username',
+            label: 'User Name',
             type: 'text',
-            errorMsg: 'Username is required.',
-            invalidMsg: 'Your username is invalid',
+            errorMsg: 'Email address is required.',
+            invalidMsg: 'Your email is invalid',
         },
         password: {
             name: 'password',

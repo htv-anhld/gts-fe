@@ -14,7 +14,7 @@ Coded by www.creative-tim.com
 */
 
 // react-flatpickr components
-// import { Flatpickr } from "react-flatpickr";
+import Flatpickr from "react-flatpickr";
 
 // react-flatpickr styles
 import "flatpickr/dist/flatpickr.css";
@@ -31,13 +31,13 @@ interface Props {
 }
 
 function MDDatePicker({ input, ...rest }: Props): JSX.Element {
-  return (<></>
-    // <Flatpickr
-    //   {...rest}
-    //   render={({ defaultValue }: any, ref: any) => (
-    //     <MDInput {...input} defaultValue={defaultValue} inputRef={ref} />
-    //   )}
-    // />
+  return (
+    <Flatpickr
+      {...rest}
+      render={({ defaultValue }: any, ref: any) => (
+        <MDInput {...input} defaultValue={defaultValue} inputRef={ref} />
+      )}
+    />
   );
 }
 

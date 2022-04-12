@@ -48,7 +48,6 @@ class HttpApiService {
       config => {
         const token = localStorage.getItem('token');
         config.headers.Authorization =  token ? `Bearer ${token}` : '';
-        console.log({config});
         return config;
       },
       error => {

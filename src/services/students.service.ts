@@ -1,5 +1,5 @@
-import HttpApiService from './HttpApiService';
-import { IStudents } from '../model/students';
+import HttpApiService from './api.service';
+import { IStudents } from '../models/students';
 
 const API_BASE = `${process.env.REACT_APP_API_URI}`;
 

@@ -1,6 +1,6 @@
-import { AuthLogout, AuthParams, AuthToken } from "model/auth";
-import { BaseResponse } from "types/base-response";
-import HttpApiService from "./HttpApiService";
+import { AuthLogout, AuthParams, AuthToken } from "../models/Auth";
+import { BaseResponse } from "../types/base-response";
+import HttpApiService from "./api.service";
 
 export class AuthService extends HttpApiService {
 
