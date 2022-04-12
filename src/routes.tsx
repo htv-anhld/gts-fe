@@ -59,74 +59,73 @@ const routes = [
         component: <Dashboards />,
         noCollapse: true,
     },
+    // {
+    //     type: 'collapse',
+    //     name: 'Pages',
+    //     key: 'pages',
+    //     icon: <Icon fontSize="medium">image</Icon>,
+    //     collapse: [
+    //         {
+    //             name: 'Data Tables',
+    //             key: 'data-tables',
+    //             route: '/applications/data-tables',
+    //             component: <DataTables />,
+    //         },
+    //         {
+    //             name: 'Calendar',
+    //             key: 'calendar',
+    //             route: '/applications/calendar',
+    //             component: <Calendar />,
+    //         },
+    //         {
+    //             name: 'Users',
+    //             key: 'users',
+    //             route: '/users/new-user',
+    //             component: <NewUser />,
+    //         },
+    //         { name: 'Settings', key: 'settings', route: '/account/settings', component: <Settings /> },
+    //     ],
+    // },
+    // {
+    //     type: 'collapse',
+    //     name: 'Authentication',
+    //     key: 'authentication',
+    //     icon: <Icon fontSize="medium">content_paste</Icon>,
+    //     collapse: [
+    //         {
+    //             name: 'Sign Up',
+    //             key: 'sign-up',
+    //             collapse: [
+    //                 {
+    //                     name: 'Cover',
+    //                     key: 'cover',
+    //                     route: '/authentication/sign-up/cover',
+    //                     component: <SignUpCover />,
+    //                 },
+    //             ],
+    //         },
+    //         {
+    //             name: 'Reset Password',
+    //             key: 'reset-password',
+    //             collapse: [
+    //                 {
+    //                     name: 'Cover',
+    //                     key: 'cover',
+    //                     route: '/authentication/reset-password/cover',
+    //                     component: <ResetCover />,
+    //                 },
+    //             ],
+    //         },
+    //     ],
+    // },
     {
         type: 'collapse',
-        name: 'Pages',
-        key: 'pages',
-        icon: <Icon fontSize="medium">image</Icon>,
-        collapse: [
-            {
-                name: 'Data Tables',
-                key: 'data-tables',
-                route: '/applications/data-tables',
-                component: <DataTables />,
-            },
-            {
-                name: 'Calendar',
-                key: 'calendar',
-                route: '/applications/calendar',
-                component: <Calendar />,
-            },
-            {
-                name: 'Users',
-                key: 'users',
-                route: '/users/new-user',
-                component: <NewUser />,
-            },
-            { name: 'Settings', key: 'settings', route: '/account/settings', component: <Settings /> },
-        ],
+        name: 'Students',
+        key: 'students',
+        href: '/students',
+        icon: <Icon fontSize="medium">people_icon</Icon>,
+        noCollapse: true,
     },
-    {
-        type: 'collapse',
-        name: 'Authentication',
-        key: 'authentication',
-        icon: <Icon fontSize="medium">content_paste</Icon>,
-        collapse: [
-            {
-                name: 'Sign Up',
-                key: 'sign-up',
-                collapse: [
-                    {
-                        name: 'Cover',
-                        key: 'cover',
-                        route: '/authentication/sign-up/cover',
-                        component: <SignUpCover />,
-                    },
-                ],
-            },
-            {
-                name: 'Reset Password',
-                key: 'reset-password',
-                collapse: [
-                    {
-                        name: 'Cover',
-                        key: 'cover',
-                        route: '/authentication/reset-password/cover',
-                        component: <ResetCover />,
-                    },
-                ],
-            },
-        ],
-    },
-    {
-      type: 'collapse',
-      name: 'Students',
-      key: 'students',
-      route: '/students',
-      icon: <Icon fontSize="medium">people_icon</Icon>,
-      component: <StudentLayout />,
-      noCollapse: true,
-  },
 ];
 
 export default routes;

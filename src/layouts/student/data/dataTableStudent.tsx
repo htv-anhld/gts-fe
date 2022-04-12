@@ -92,35 +92,7 @@ const dataTableStudent: IDataTableVideo = {
             Cell: ({ value }: { value: string }) => <DefaultCell value={value} />,
         },
     ],
-
-    rows: [
-        {
-            managementNumber: 2,
-            benCertEndDate: '2022 / 04 / 05',
-            serviceType: 'blue',
-            gender: 'male',
-            name: 'Sakura',
-            dateOfBirth: '2022 / 04 / 05',
-            schoolLevel: 1,
-            age: 10,
-            grade: 1,
-            conservator: 'Yamato',
-            serviceStatus: 'using',
-        },
-        {
-            managementNumber: 1,
-            benCertEndDate: '2022 / 04 / 06',
-            serviceType: 'blue',
-            gender: 'female',
-            name: 'Sakura',
-            dateOfBirth: '2022 / 04 / 06',
-            schoolLevel: 2,
-            age: 11,
-            grade: 2,
-            conservator: 'Yamato',
-            serviceStatus: 'using',
-        },
-    ],
+    rows: [],
 };
 
 export default dataTableStudent;

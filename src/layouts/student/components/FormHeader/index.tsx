@@ -63,8 +63,9 @@ export default function FormHeader(props: IFormHeaderProps) {
                 </MDBox>
             </MDBox>
             <MDBox display="flex" mt={2}>
-                {listTextTab.map((text: string) => (
+                {listTextTab.map((text: string, idx) => (
                     <MDBox
+                        key={idx}
                         sx={({ palette: { white } }: Theme) => ({
                             bgcolor: white.main,
                             mr: 2,

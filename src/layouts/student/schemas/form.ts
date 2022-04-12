@@ -71,12 +71,6 @@ const form = {
             type: 'text',
             errorMsg: 'Conservator is required.',
         },
-        serviceStatus: {
-            name: 'serviceStatus',
-            label: 'Service Status',
-            type: 'text',
-            errorMsg: 'Service Status is required.',
-        },
     },
 };
 

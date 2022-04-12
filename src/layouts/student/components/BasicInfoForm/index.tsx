@@ -14,33 +14,32 @@ Coded by www.creative-tim.com
 */
 
 // @material-ui core components
-import { MenuItem } from '@material-ui/core';
 import { DatePicker, LocalizationProvider } from '@mui/lab';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import {
     Autocomplete,
-    FormControl,
+    AutocompleteProps,
     FormControlLabel,
     FormLabel,
     Radio,
     RadioGroup,
-    Select,
     TextField,
 } from '@mui/material';
 import Card from '@mui/material/Card';
+import FormControl from '@mui/material/FormControl';
 import Grid from '@mui/material/Grid';
+import { SelectChangeEvent } from '@mui/material/Select';
+import select from 'assets/theme/components/form/select';
 // Material Dashboard 2 PRO React TS components
 import MDBox from 'components/common/MDBox';
 import MDButton from 'components/common/MDButton';
 import FormField from 'components/common/MDFormField';
 import MDTypography from 'components/common/MDTypography';
-import RadioField from 'components/custom/RadioField';
-import SelectField from 'components/custom/SelectField';
-import { Field, Form, Formik } from 'formik';
+import { Form, Formik } from 'formik';
 // Settings page components
 import form from 'layouts/student/schemas/form';
 import initialValuesStudentForm from 'layouts/student/schemas/initialValues';
-import { useState } from 'react';
+import { SyntheticEvent, useState } from 'react';
 import selectData from './data/selectData';
 
 interface KeyValuePair {
@@ -61,25 +60,30 @@ function BasicInfoForm(): JSX.Element {
         schoolLevel,
         grade,
         conservator,
-        serviceStatus,
     } = formField;
 
     const handleSubmit = (values: any, actions: any) => {
         console.log('handle submit', values);
     };
 
+    const handleChange = (event: SelectChangeEvent) => {
+        console.log(event);
+
+        // setAge(event.target.value as string);
+    };
+
     return (
-        <Card id="basic-info" sx={{ overflow: 'visible' }}>
+        <Card>
             <MDBox p={3}>
                 <MDTypography variant="h5">基本情報</MDTypography>
             </MDBox>
             <Formik initialValues={initialValuesStudentForm} onSubmit={handleSubmit}>
                 {({ values, setFieldValue, errors, touched, isSubmitting }) => {
                     return (
-                        <Form id={formId} autoComplete="off">
+                        <Form id={formId}>
                             <MDBox pb={3} px={3}>
                                 <Grid container spacing={3}>
-                                    <Grid item xs={12} sm={6} lg={6}>
+                                    <Grid item xs={12} sm={6} lg={12}>
                                         <FormField
                                             type={conservator.type}
                                             label={conservator.label}
@@ -98,7 +102,7 @@ function BasicInfoForm(): JSX.Element {
                                             error={errors.managementNumber && touched.managementNumber}
                                         />
                                     </Grid>
-                                    <Grid item xs={12} sm={6}>
+                                    <Grid item xs={12} sm={6} lg={12}>
                                         <FormField
                                             type={name.type}
                                             label={name.label}
@@ -110,10 +114,12 @@ function BasicInfoForm(): JSX.Element {
                                     <Grid item xs={12} sm={6} lg={12}>
                                         <LocalizationProvider dateAdapter={AdapterDateFns}>
                                             <DatePicker
-                                                label="benCertEndDate"
-                                                value={value}
-                                                onChange={(newValue: any) => {
-                                                    setValue(newValue);
+                                                label={benCertEndDate.label}
+                                                value={values.benCertEndDate}
+                                                onChange={(value: any) => {
+                                                    console.log(value);
+
+                                                    setFieldValue(benCertEndDate.name, value);
                                                 }}
                                                 renderInput={(params: any) => <TextField {...params} />}
                                             />
@@ -123,9 +129,11 @@ function BasicInfoForm(): JSX.Element {
                                         <LocalizationProvider dateAdapter={AdapterDateFns}>
                                             <DatePicker
                                                 label={dateOfBirth.label}
-                                                value={value}
-                                                onChange={(newValue: any) => {
-                                                    setValue(newValue);
+                                                value={values.dateOfBirth}
+                                                onChange={(value: any) => {
+                                                    console.log(value);
+
+                                                    setFieldValue(dateOfBirth.name, value);
                                                 }}
                                                 renderInput={(params: any) => <TextField {...params} />}
                                             />
@@ -133,84 +141,99 @@ function BasicInfoForm(): JSX.Element {
                                     </Grid>
                                     <Grid item xs={12} sm={6} lg={12}>
                                         <FormControl>
-                                            <FormLabel id="demo-row-radio-buttons-group-label">Gender</FormLabel>
-                                            <RadioGroup
-                                                row
-                                                aria-labelledby="demo-row-radio-buttons-group-label"
-                                                name="row-radio-buttons-group"
-                                            >
-                                                <FormControlLabel value="female" control={<Radio />} label="Female" />
-                                                <FormControlLabel value="male" control={<Radio />} label="Male" />
-                                            </RadioGroup>
-                                        </FormControl>
-                                    </Grid>
-                                    <Grid item xs={12} sm={6} lg={12}>
-                                        <FormControl>
-                                            <FormLabel id="demo-row-radio-buttons-group-label">Service type</FormLabel>
-                                            <RadioGroup
-                                                row
-                                                aria-labelledby="demo-row-radio-buttons-group-label"
-                                                name="row-radio-buttons-group"
-                                            >
-                                                <FormControlLabel value="blue" control={<Radio />} label="Blue" />
-                                                <FormControlLabel value="purple" control={<Radio />} label="Purple" />
-                                            </RadioGroup>
-                                        </FormControl>
-                                    </Grid>
-                                    <Grid item xs={12} sm={6} lg={12}>
-                                        <FormControl>
-                                            <FormLabel id="demo-row-radio-buttons-group-label">Date Of Birth</FormLabel>
-                                            <RadioGroup
-                                                row
-                                                aria-labelledby="demo-row-radio-buttons-group-label"
-                                                name="row-radio-buttons-group"
-                                            >
-                                                <FormControlLabel value="blue" control={<Radio />} label="Blue" />
-                                                <FormControlLabel value="purple" control={<Radio />} label="Purple" />
-                                            </RadioGroup>
-                                        </FormControl>
-                                    </Grid>
-                                    <Grid item xs={12} sm={6} lg={12}>
-                                        <Grid item xs={12} sm={4}>
-                                            <Field name={schoolLevel.name} component={SelectField}>
-                                                {selectData.schoolLevel.map((data: KeyValuePair) => (
-                                                    <MenuItem value={data.value}>{data.label}</MenuItem>
-                                                ))}
-                                            </Field>
-                                        </Grid>
-                                    </Grid>
-                                    {/* <Grid item xs={12} sm={6} lg={12}>
-                                        <Grid item xs={12} sm={4}>
-                                            <Field name={grade.name} component={SelectField}>
-                                                {selectData.grade.map((data: KeyValuePair) => (
-                                                    <MenuItem value={data.key}>{data.value}</MenuItem>
-                                                ))}
-                                            </Field>
-                                        </Grid>
-                                    </Grid> */}
-                                    <Grid item xs={12} sm={6} lg={12}>
-                                        <RadioField row name={serviceStatus.name} options={selectData.serviceStatus} />
-                                        {/* <FormControl component="fieldset">
-                                            <FormLabel id="demo-row-radio-buttons-group-label" component="legend">
-                                                Service status
+                                            <FormLabel id="demo-row-radio-buttons-group-label">
+                                                {serviceType.label}
                                             </FormLabel>
                                             <RadioGroup
-                                                name={serviceStatus.name}
-                                                value={values.serviceStatus}
                                                 row
                                                 aria-labelledby="demo-row-radio-buttons-group-label"
-                                                onChange={(event: HTMLInputElement) => {
-                                                    setFieldValue(serviceStatus.name, event.currentTarget.value);
-                                                }}
+                                                defaultValue={values.serviceType}
+                                                onChange={(event: React.ChangeEvent<HTMLInputElement>, value: string) =>
+                                                    setFieldValue(serviceType.name, value)
+                                                }
                                             >
-                                                <FormControlLabel value="using" control={<Radio />} label="Using" />
-                                                {/* <FormControlLabel
-                                                    value="cancelled"
-                                                    control={<Radio />}
-                                                    label="Cancelled"
-                                                /> */}
-                                        {/* </RadioGroup>
-                                        // </FormControl> */}
+                                                {selectData.serviceType.map((service, idx) => (
+                                                    <FormControlLabel
+                                                        key={idx}
+                                                        value={service}
+                                                        control={<Radio />}
+                                                        label={service}
+                                                    />
+                                                ))}
+                                            </RadioGroup>
+                                        </FormControl>
+                                    </Grid>
+                                    <Grid item xs={12} sm={6} lg={12}>
+                                        <FormControl>
+                                            <FormLabel id="demo-row-radio-buttons-group-label">
+                                                {gender.label}
+                                            </FormLabel>
+                                            <RadioGroup
+                                                row
+                                                aria-labelledby="demo-row-radio-buttons-group-label"
+                                                defaultValue={values.service}
+                                                onChange={(event: React.ChangeEvent<HTMLInputElement>, value: string) =>
+                                                    setFieldValue(gender.name, value)
+                                                }
+                                            >
+                                                {selectData.gender.map((gender, idx) => (
+                                                    <FormControlLabel
+                                                        key={idx}
+                                                        value={gender}
+                                                        control={<Radio />}
+                                                        label={gender}
+                                                    />
+                                                ))}
+                                            </RadioGroup>
+                                        </FormControl>
+                                    </Grid>
+                                    <Grid item xs={12} sm={6} lg={12}>
+                                        <Autocomplete
+                                            size="medium"
+                                            value={values.schoolLevel}
+                                            options={selectData.schoolLevel}
+                                            onChange={(
+                                                event: SyntheticEvent<Element, Event>,
+                                                value: string | { label: string; value: string },
+                                            ) =>
+                                                setFieldValue(
+                                                    schoolLevel.name,
+                                                    typeof value === 'string' ? value : value.value,
+                                                )
+                                            }
+                                            renderInput={(params) => (
+                                                <FormField
+                                                    name={schoolLevel.name}
+                                                    {...params}
+                                                    label={schoolLevel.label}
+                                                    InputLabelProps={{ shrink: true }}
+                                                />
+                                            )}
+                                        />
+                                    </Grid>
+                                    <Grid item xs={12} sm={6} lg={12}>
+                                        <Autocomplete
+                                            size="medium"
+                                            value={values.grade}
+                                            options={selectData.grade}
+                                            onChange={(
+                                                event: SyntheticEvent<Element, Event>,
+                                                value: string | { label: string; value: string },
+                                            ) =>
+                                                setFieldValue(
+                                                    grade.name,
+                                                    typeof value === 'string' ? value : value.value,
+                                                )
+                                            }
+                                            renderInput={(params) => (
+                                                <FormField
+                                                    name={grade.name}
+                                                    {...params}
+                                                    label={grade.label}
+                                                    InputLabelProps={{ shrink: true }}
+                                                />
+                                            )}
+                                        />
                                     </Grid>
                                     <Grid item xs={12} sm={6} lg={12}>
                                         <MDButton type="submit" variant="gradient" color="info" fullWidth>

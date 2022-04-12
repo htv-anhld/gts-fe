@@ -33,7 +33,7 @@ import MDBadge from "components/common/MDBadge";
 // Material Dashboard 2 PRO React TS examples components
 import Breadcrumbs from "components/Breadcrumbs";
 import NotificationItem from "components/Items/NotificationItem";
-import { AuthApiService } from "../../../api/AuthService";
+import { AuthApiService } from "../../../services/auth.service";
 // Custom styles for DashboardNavbar
 import {
   navbar,

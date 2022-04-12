@@ -1,9 +1,8 @@
 import HttpApiService from './api.service';
-import { IStudents } from '../models/students';
+import { Student } from '../models/Student';
+import { StudentPagination } from 'types/student.type';
 
-const API_BASE = `${process.env.REACT_APP_API_URI}`;
-
-const CONTACT_ENDPOINT = `${API_BASE}/students`;
+const CONTACT_ENDPOINT = `/students`;
 
 export class StudentsApi extends HttpApiService {
     //#region Contact
@@ -11,16 +10,16 @@ export class StudentsApi extends HttpApiService {
         return this.get(`${CONTACT_ENDPOINT}/${id}`);
     };
 
-    getAllContacts = () => {
-        const response = this.get(`${CONTACT_ENDPOINT}`);
+    getAllContacts = (params: StudentPagination = { offset: 1, limit: 10 }) => {
+        const response = this.get(`${CONTACT_ENDPOINT}`, { params });
         return response;
     };
 
-    createContact = (data: IStudents) => {
+    createContact = (data: Student) => {
         return super.create(`${CONTACT_ENDPOINT}`, data);
     };
 
-    updateContact = (data: IStudents) => {
+    updateContact = (data: Student) => {
         return super.update(`${CONTACT_ENDPOINT}`, data);
     };
     //#endregion Contact

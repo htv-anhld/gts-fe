@@ -4,9 +4,11 @@ import MDTypography from 'components/common/MDTypography';
 import * as React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-export interface IStudentFilterProps {}
+export interface IStudentFilterProps {
+    onHandleSearch: (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+}
 
-export default function StudentFilter(props: IStudentFilterProps) {
+export default function StudentFilter({ onHandleSearch }: IStudentFilterProps) {
     const { pathname } = useLocation();
     return (
         <MDBox display="flex" justifyContent="space-between" mb={1}>
@@ -25,6 +27,7 @@ export default function StudentFilter(props: IStudentFilterProps) {
                         sx={{ ml: 1, flex: 1, fontSize: 14 }}
                         placeholder="児童名検索"
                         inputProps={{ 'aria-label': '児童名検索' }}
+                        onChange={onHandleSearch}
                     />
                     <IconButton type="submit" aria-label="search">
                         <Icon>search_icon</Icon>

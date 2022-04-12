@@ -26,21 +26,19 @@ const {
         schoolLevel,
         grade,
         conservator,
-        serviceStatus,
     },
 } = checkout;
 
-const initialValuesStudentForm = {
+const initialValuesStudentForm: { [x: string]: string | null } = {
     [managementNumber.name]: '',
-    [benCertEndDate.name]: '',
+    [benCertEndDate.name]: null,
     [serviceType.name]: '',
     [gender.name]: '',
     [name.name]: '',
-    [dateOfBirth.name]: '',
+    [dateOfBirth.name]: null,
     [schoolLevel.name]: '',
     [grade.name]: '',
     [conservator.name]: '',
-    [serviceStatus.name]: '',
 };
 
 export default initialValuesStudentForm;
