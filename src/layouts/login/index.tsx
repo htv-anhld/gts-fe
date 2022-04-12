@@ -23,6 +23,7 @@ import MDBox from 'components/common/MDBox';
 import MDButton from 'components/common/MDButton';
 import FormField from 'components/common/MDFormField';
 import MDTypography from 'components/common/MDTypography';
+import MDAlert from "components/common/MDAlert";
 import { Form, Formik } from 'formik';
 // Authentication layout components
 import BasicLayout from 'layouts/authentication/components/BasicLayout';
@@ -77,6 +78,7 @@ function Basic(): JSX.Element {
                         {({ values, errors, touched, isSubmitting }) => {
                             return (
                                 <Form id={formId} autoComplete="off">
+                                    <MDBox mb={1}><MDAlert color="error">This is an alert!</MDAlert></MDBox>
                                     <MDBox mb={2}>
                                         <FormField
                                             type={username.type}
