@@ -1,0 +1,31 @@
+# temp files from editors
+*~
+*.bak
+.DS_Store
+.buildpath
+.project
+.settings
+*.tmproj
+build
+.idea
+*.pid
+
+# hidden files created by Windows
+Thumbs.db
+desktop.ini
+
+# dynamically generated files
+/node_modules
+package-lock.json
+
+# sass sourcemaps
+*.map
+
+# compiled css from sass
+*.css
+
+# bundle.js
+/public/assets/js/dist/
+
+# bundle.scss
+/public/assets/sass/dist/
